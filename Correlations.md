@@ -17,7 +17,9 @@ jupyter:
 import numpy as np
 import pylab as plt
 from qutip import *
+```
 
+```python
 N = 5
 w = 1 * 2 * np.pi              # 1 Hz oscillator frequency
 Q = 40
@@ -36,9 +38,17 @@ c_ops = []
 
 psi0 = fock(N,0)
 tlist = np.linspace(0, 10, 500)
-corr = correlation_2op_1t(H, psi0, tlist, c_ops, x, x)
-wlist1, spec1 = spectrum_correlation_fft(tlist, corr)
+```
 
+```python
+corr = correlation_2op_1t(H, psi0, tlist, c_ops, x, x, solver='me')
+```
+
+```python
+wlist1, spec1 = spectrum_correlation_fft(tlist, corr)
+```
+
+```python
 plt.figure(figsize=(14,8))
 plt.plot(tlist, np.real(corr))
 plt.plot(tlist, np.imag(corr))
@@ -47,4 +57,14 @@ plt.show()
 plt.figure(figsize=(14,8))
 plt.plot(wlist1, np.abs(spec1))
 plt.show()
+```
+
+```python
+from qutip.ipynbtools import version_table
+
+version_table()
+```
+
+```python
+
 ```
